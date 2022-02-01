@@ -1,0 +1,24 @@
+#myCanvas{
+    border: 1px solid pink;
+    box-sizing: border-box;
+    left: 50%;
+    top: 50%;
+    position: relative;
+    transform: translate(-50%,-50%);
+}
+#parent{
+    border: 5px solid black;
+    height: 200px;
+    width: 400px;
+}
+
+#wrapper{
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+}
+
+#myframe{
+    height: 10000px;
+    width:  10000px;
+}
