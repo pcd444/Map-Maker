@@ -10,13 +10,24 @@
 </head>
 <body>
     <div id="parent">
-        <canvas height="1" width="2" id="myCanvas" testattr="green"></canvas>
+        <canvas height="100" width="200" id="myCanvas" testattr="green"></canvas>
     </div>
     <div id="wrapper">
         <iframe src='tobeiframe.html' id="myframe"></iframe>
     </div>
+    <span id="feedback" class="StatusOk">Status pending</span>
+    <br>
     <button id="button1">Enact changes</button>
-    <input type="number" id="height">
-    <input type="number" id="width">
+    px height<input type="number" id="height" min='30' max="100000">
+    px width<input type="number" id="width" min="30" max="100000">
+    min X<input type="number" id="minX">
+    max X<input type="number" id="maxX">
+    min Y<input type="number" id="minY">
+    max Y<input type="number" id="maxY">
+    <br>
+    min Theta<input type="number" id="minTheta">
+    max Theta<input type="number" id="maxTheta">
+    min Phi<input type="number" id="minPhi">
+    max Phi<input type="number" id="maxPhi">
 </body>
 </html>

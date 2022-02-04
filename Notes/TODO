@@ -1,0 +1,18 @@
+Short term
+- Build & test basic forward method. Because it is so simple to do differnt projections test multiple.
+
+- If there are issues then try to make a backwards method.
+ - Start with building a newton solver for known derivatives, test multiple formulas.
+ - If that works use it into a backwards method that uses random guessing. Test multiple projections.
+ - If there are issues build the forwards to backwards method.
+
+
+
+Longer term
+- do meat
+
+If time:
+- Change x,y,px,thet,phi submit button onclick to correct x y and px if they don't 100% agree.
+  This is so that one pixel is the right amount of movement.
+
+- Check if batch updating canvas w/ image data is better than by pixel using rect.

@@ -22,3 +22,11 @@
     height: 10000px;
     width:  10000px;
 }
+
+.StatusOk{
+    color: blue;
+}
+
+.StatusBad{
+    color: red;
+}
