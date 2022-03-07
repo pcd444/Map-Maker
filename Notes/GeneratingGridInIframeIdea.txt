@@ -1,0 +1,1 @@
+Generating the grid in the iframe is possible for the forward method. This would be good practice because it reduces the postmessage overhead.

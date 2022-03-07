@@ -10,12 +10,13 @@ window.addEventListener("message",function(e){
         let x = thetaToX(longitude);
         let y = phiToY(latitude);
         let element = document.elementFromPoint(x, y);
-        if(element === svg || element === mapBorder || element === null){
+        if(element === svg || element === mapBorder || element === null ||element === this.document.documentElement){
             throw new Error(`The search somehow went out of bounds: the element found was ${element}`);
         }
         output.push([...element.classList]);
     }
     window.parent.postMessage(output);
+    console.log('here22')
 });
 
 function xToTheta(x){
