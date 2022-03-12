@@ -177,7 +177,7 @@ function gallsPetersProjection(theta, phi){
 //projectButton.addEventListener('click',() =>FullProjectionRender(mercatorProjection,-180,180,-100,100,180*2,100*2,-180,180,-70,70,2));
 
 // Galls Peters full world
-projectButton.addEventListener('click',() =>FullProjectionRender(gallsPetersProjection,-180,180,-(2*180/Math.PI),(2*180/Math.PI),157,100,-180,180,-90,90,2));
+projectButton.addEventListener('click',() =>FullProjectionRender(gallsPetersProjection,-180,180,-(2*180/Math.PI),(2*180/Math.PI),157,100,-180,180,-90,90,1));
 
 function FullProjectionRender(projection,xMin,xMax,yMin,yMax,xPixelCount,yPixelCount,minTheta,maxTheta,minPhi,maxPhi,testPointsFactor){
     // Overwrite Canvas

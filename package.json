@@ -1,0 +1,26 @@
+{
+  "name": "map-maker",
+  "version": "1.0.0",
+  "description": "website to make maps with different projections.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcd444/Map-Maker.git"
+  },
+  "keywords": [
+    "map",
+    "projection"
+  ],
+  "author": "Peter Clements Duffy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcd444/Map-Maker/issues"
+  },
+  "homepage": "https://github.com/pcd444/Map-Maker#readme",
+  "dependencies": {
+    "mathjs": "^10.4.0"
+  }
+}
