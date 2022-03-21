@@ -15,4 +15,4 @@ function gridPointsGenerator(minDim1,maxDim1,minDim2,maxDim2,dim1PixelCount,dim2
     return output;
 }
 
-export default gridPointsGenerator;
+export {gridPointsGenerator};

@@ -30,3 +30,19 @@
 .StatusBad{
     color: red;
 }
+
+.Local-Error{
+    border: 3px solid red;
+}
+
+.Nonlocal-Error{
+    background-color: orange;
+}
+
+#resolution.Active{
+    border: 3px solid green;
+}
+
+#resolution{
+    border: 3px solid gray;
+}

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map maker</title>
+    <script src="./node_modules/mathjs/lib/browser/math.js"></script>
     <script src='main.js' defer type="module"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,12 +19,13 @@
     <span id="feedback" class="StatusOk">Status pending</span>
     <button id="project-button">Project</button>
     <br>
-    <input type="text" id ="projection-input">
+    X = <input type="text" id ="projection-inputX">
+    Y = <input type="text" id ="projection-inputY">
     <br>
     <button id="button1">Enact changes</button><!--Should be removed-->
-    px height<input type="number" id="height" min='30' max="100000">
-    px width<input type="number" id="width" min="30" max="100000">
-    resolution<input type="range"min="0" max="7">
+    px height<input type="number" id="height" min='30' max="4000">
+    px width<input type="number" id="width" min="30" max="4000">
+    resolution<input type="range"min="0" max="2" id="resolution">
     <br>
     min X<input type="number" id="minX">
     max X<input type="number" id="maxX">
@@ -34,5 +36,7 @@
     max Theta<input type="number" id="maxTheta">
     min Phi<input type="number" id="minPhi">
     max Phi<input type="number" id="maxPhi">
+    <br>
+    test point factor<input type="number" id="testPointFactor">
 </body>
 </html>
