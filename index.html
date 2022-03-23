@@ -16,13 +16,16 @@
     <div id="wrapper">
         <iframe src='tobeiframe.html' id="myframe"></iframe>
     </div>
-    <span id="feedback" class="StatusOk">Status pending</span>
     <button id="project-button">Project</button>
+    <br>
+    <input type="radio" id="radians" name="units" value="radians" id="radians" checked>
+    <label for="radians">Radians</label>
+    <input type="radio" id="degrees" name="units" value="degrees" id = "degrees">
+    <label for="degrees">Degrees</label>
     <br>
     X = <input type="text" id ="projection-inputX">
     Y = <input type="text" id ="projection-inputY">
     <br>
-    <button id="button1">Enact changes</button><!--Should be removed-->
     px height<input type="number" id="height" min='30' max="4000">
     px width<input type="number" id="width" min="30" max="4000">
     resolution<input type="range"min="0" max="2" id="resolution">

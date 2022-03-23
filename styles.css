@@ -40,9 +40,9 @@
 }
 
 #resolution.Active{
-    border: 3px solid green;
+    opacity: 1;
 }
 
 #resolution{
-    border: 3px solid gray;
+    opacity: .5;
 }

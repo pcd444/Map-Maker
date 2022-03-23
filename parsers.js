@@ -69,7 +69,7 @@ function checkVariables(expressionNode){
 
         case 'SymbolNode':
             const name = expressionNode.name;
-            if(name === 'theta' || name === 'phi' /*|| name === 'θ' || name === 'φ' || name === 'lattitude' || name === 'longitude'*/){
+            if(name === 'theta' || name === 'phi' /*|| name === 'θ' || name === 'φ' || name === 'lattitude' || name === 'longitude'*/ || name ==='pi'){
                 return true;
             }
             else{
