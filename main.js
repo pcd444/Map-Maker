@@ -3,6 +3,7 @@ import {gridPointsGenerator} from "./gridPointsGenerator.js";
 import { degreeToRadians, radianToDegrees } from "./radianDegreeConversion.js";
 import { parseFloat, parseInteger, parseProjection } from "./parsers.js";
 import { autoFindXYBounds } from "./autoFindXYBounds.js";
+import { pixelDimensionsFromXYAndCount } from "./pixelDimensionsFromXYAndCount.js";
 
 
 // Config
@@ -271,13 +272,6 @@ maxPhiInput.addEventListener('change',
     }
 );
 
-function pixelDimensionsFromXYAndCount(pixelCount, deltaX, deltaY){
-    const ratio = deltaX/deltaY;
-    const pixelHeight = Math.round(Math.sqrt(pixelCount/ratio));
-    const pixelWidth = Math.round(Math.sqrt(pixelCount*ratio));
-    return [pixelWidth, pixelHeight];
-}
-
 function changeCanvasDimensions(pixelWidth, pixelHeight){
     // Resize the canvas.
     canvasElement.height = pixelHeight;
@@ -453,7 +447,7 @@ function checkIfPixelDimsMatchXYBounds(pixelHeight, pixelWidth){
             const deltaY = yMax - yMin;
             const xyRatio = deltaX/deltaY;
             const pixelRatio = pixelWidth/pixelHeight;
-            const ratioDiff = xyRatio - pixelRatio;
+            const ratioDiff = Math.abs(xyRatio - pixelRatio);
             const onlyALittleBitOff = Math.abs(ratioDiff) < 0.01;
             // Check if there is no better at a similar res. Concretly this checks if there is a better match by just changing pixelHeight or pixelWidth
             const withOneLessWidth = Math.abs(((pixelWidth-1)/pixelHeight) - xyRatio);
@@ -478,9 +472,9 @@ pixelHeightInput.addEventListener('change',
         resolutionSlider.classList.remove('Active');
         const intValue = parseInteger(this.value);
         const paredElementValue = parseInteger(pixelWidthInput.value);
-        if(intValue !== null && intValue >= 30 && intValue <= 4000){
+        if(intValue !== null && intValue >= 20 && intValue <= 4000){
             this.classList.remove('Local-Error');
-            if(paredElementValue !== null && paredElementValue >= 30 && paredElementValue <= 4000){
+            if(paredElementValue !== null && paredElementValue >= 20 && paredElementValue <= 4000){
                 // Check if the pixel dimensions match the X & Y bounds
                 if(checkIfPixelDimsMatchXYBounds(intValue, paredElementValue)){//n
                     this.classList.remove('Nonlocal-Error');
@@ -502,9 +496,9 @@ pixelWidthInput.addEventListener('change',
         resolutionSlider.classList.remove('Active');
         const intValue = parseInteger(this.value);
         const paredElementValue = parseInteger(pixelHeightInput.value);
-        if(intValue !== null && intValue >= 30 && intValue <= 4000){
+        if(intValue !== null && intValue >= 20 && intValue <= 4000){
             this.classList.remove('Local-Error');
-            if(paredElementValue !== null && paredElementValue >= 30 && paredElementValue <= 4000){
+            if(paredElementValue !== null && paredElementValue >= 20 && paredElementValue <= 4000){
                 // Check if the pixel dimensions match the X & Y bounds
                 if(checkIfPixelDimsMatchXYBounds(paredElementValue, intValue)){//n
                     this.classList.remove('Nonlocal-Error');
@@ -604,8 +598,8 @@ projectButton.addEventListener('click',
             alert("A theta/phi coordinate is out of bounds");
             return;
         }
-        if(pixelHeight < 30 || pixelHeight > 4000 || pixelWidth < 30 || pixelWidth > 4000){
-            alert("A pixel value is to big or small. Pixel values have to be in the range [30, 4000]");
+        if(pixelHeight < 20 || pixelHeight > 4000 || pixelWidth < 20 || pixelWidth > 4000){
+            alert("A pixel value is to big or small. Pixel values have to be in the range [20, 4000]");
             return;
         }
         if(!checkIfPixelDimsMatchXYBounds(pixelHeight, pixelWidth)){
@@ -683,12 +677,12 @@ projectButton.addEventListener('click',
 
 radians.addEventListener('change', function(e){
     trigMode = 'radians';
-    math.import({...OGTRIG,...OGINVERSETRIG});
+    math.import({...OGTRIG,...OGINVERSETRIG},{override:true});
     possiblyAutoSetXYBounds();
 });
 
 degrees.addEventListener('change', function(e){
     trigMode = 'degrees';
-    math.import({...DEGTRIG,...DEGINVERSETRIG});
+    math.import({...DEGTRIG,...DEGINVERSETRIG},{override:true});
     possiblyAutoSetXYBounds();
 });
