@@ -7,7 +7,7 @@ function parseInteger(string){
 }
 
 function parseFloat(string){
-    if (/^[-+]?(\d+)(.\d*)?$/.test(string)) {
+    if (/^[-+]?(\d+)(.\d*)?(e[+-]?\d+)?$/.test(string)) {
         return Number(string)
     } else {
         return null;

@@ -4,7 +4,7 @@ import { degreeToRadians, radianToDegrees } from "./radianDegreeConversion.js";
 import { parseFloat, parseInteger, parseProjection } from "./parsers.js";
 import { autoFindXYBounds } from "./autoFindXYBounds.js";
 import { pixelDimensionsFromXYAndCount } from "./pixelDimensionsFromXYAndCount.js";
-
+import { allCountryCodes } from "./allCountryCodes.js";
 
 // Config
 const resolutions = [25*50 ,50*100, 100*200];
@@ -16,8 +16,9 @@ const IFRAME_WINDOW = IFRAME.contentWindow;
 // Canvas element
 const canvasElement = document.getElementById("myCanvas");
 const ctx = canvasElement.getContext('2d');
-canvasElement.style.height = '200px';
-canvasElement.style.width = '400px';
+canvasElement.style.height = '450px';
+canvasElement.style.width = '900px';
+
 // Initilize canvas
 ctx.fillStyle = "blue";
 ctx.fillRect(0, 0, 100, 100);
@@ -30,7 +31,7 @@ const parentWidthHeightRatio = parentWidth/parentHeight;
 
 
 // GLOBAL DATA
-// Will hold the >mapvalue data for each pixel. This is the data that has been run through Nearest Neighbor.
+// Will hold the >mapvalue data for each pixel. This is the data that has been run through Nearest Neighbor if i decide to do that.
 let PIXELGRID = null;
 
 // Projection inputs
@@ -101,6 +102,42 @@ const DEGINVERSETRIG = {
 // Current mode
 let trigMode = "radians";
 
+// Initialize color inputs
+let colorInputs = [];
+let colorInputsParent = document.getElementById('color-inputs-parent');
+// First deal with seabase
+
+let [seabaseInput, seabaseLabel] = createColorInputAndLabel('seabase', '#0000ff');
+seabaseInput.addEventListener('input',renderMap);
+colorInputs.push(seabaseInput);
+let seabaseInputParent = document.createElement('div');
+seabaseInputParent.className = 'color-input-parent';
+seabaseInputParent.append(seabaseLabel, seabaseInput);
+colorInputsParent.appendChild(seabaseInputParent);
+
+
+
+for(let countryCode of allCountryCodes){
+    let [countryInput, countryLabel] = createColorInputAndLabel(countryCode, '#00ff00');
+    countryInput.addEventListener('input',renderMap);
+    colorInputs.push(countryInput);
+    let countryInputParent = document.createElement('div');
+    countryInputParent.className = 'color-input-parent';
+    countryInputParent.append(countryLabel, countryInput);
+    colorInputsParent.appendChild(countryInputParent);
+}
+
+function createColorInputAndLabel(name, color){
+    let input = document.createElement('input');
+    input.setAttribute('type','color');
+    input.setAttribute('value',color);
+    input.setAttribute('name', name);
+    input.setAttribute('id', name);
+    let label = document.createElement('label');
+    label.innerText = name;
+    label.setAttribute('for',name);
+    return [input,label];
+}
 // UI functions
 
 // MB remove
@@ -635,13 +672,13 @@ projectButton.addEventListener('click',
 
         function callback(e){
             let pointQueries = e.data;
-            let pixelGrid = [];
+            PIXELGRID = [];
             for(let i = 0; i< pixelHeight;i++){
                 let row = [];
                 for(let j =0; j < pixelWidth;j++){
                     row.push(null);
                 }
-                pixelGrid.push(row);
+                PIXELGRID.push(row);
             }
             if(corespondingColRow.length!==pointQueries.length){
                 throw new Error('ERROR: LENGTH DONT MATCH');
@@ -649,31 +686,38 @@ projectButton.addEventListener('click',
             for(let i = 0; i < corespondingColRow.length;i++){
                 let [col,row] = corespondingColRow[i];
                 if(row < pixelHeight && col < pixelWidth && row>=0 && col >=0)
-                    pixelGrid[row][col] = pointQueries[i];
+                    PIXELGRID[row][col] = pointQueries[i];
             }
             // Write data to canvas
-            for(let [rowNum, row] of pixelGrid.entries()){
-                for(let [colNum, value] of row.entries()){
-                    if(value === null){
-                        ctx.fillStyle ='red';
-                        ctx.fillRect(colNum,rowNum,1,1);
-                    } 
-                    else if(value.includes('region')){
-                        ctx.fillStyle ='black';
-                        ctx.fillRect(colNum,rowNum,1,1);
-                    } else{
-                        ctx.fillStyle ='blue';
-                        ctx.fillRect(colNum,rowNum,1,1);
-                    }
-                    
-                }
-            }
+            renderMap()
 
             // Remove callback from window
             window.removeEventListener('message',callback);
         }
     }
 );
+
+function renderMap(){
+    // Get colors
+    let colorMap = new Map();
+    for(let input of colorInputs){
+        colorMap.set(input.name,input.value);
+    }
+    // Map Query data is allready in PIXELGRID
+    // Loop Over PIXELGRID, coloring every pixel using data in colorMap
+    for(let [rowNum, row] of PIXELGRID.entries()){
+        for(let [colNum, value] of row.entries()){
+            if(value === null){
+                ctx.fillStyle = 'red';
+                ctx.fillRect(colNum,rowNum,1,1);
+            }
+            else{
+                ctx.fillStyle = colorMap.get(value[0]);
+                ctx.fillRect(colNum,rowNum,1,1);
+            }
+        }
+    }
+}
 
 radians.addEventListener('change', function(e){
     trigMode = 'radians';

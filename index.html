@@ -10,36 +10,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="parent">
-        <canvas height="100" width="200" id="myCanvas" testattr="green"></canvas>
+    <div id="top">
+        <h1>Projection Maker</h1>
+
+        <div id="map-and-resolution-container">
+            <div id="parent">
+                <canvas height="100" width="200" id="myCanvas" testattr="green"></canvas>
+            </div>
+            <div>
+                px height<input type="number" id="height" min='20' max="4000">
+                px width<input type="number" id="width" min="20" max="4000">
+                resolution<input type="range"min="0" max="2" id="resolution">
+            </div>
+        </div>
+        <div id="wrapper">
+            <iframe src='tobeiframe.html' id="myframe"></iframe>
+        </div>
+        
+        <h5>Projection</h5>
+        <input type="radio" id="radians" name="units" value="radians" id="radians" checked>
+        <label for="radians">Radians</label>
+        <input type="radio" id="degrees" name="units" value="degrees" id = "degrees">
+        <label for="degrees">Degrees</label>
+        <br>
+        X = <input type="text" id ="projection-inputX">
+        Y = <input type="text" id ="projection-inputY">
+        <button id="project-button">Project</button>
+        <br>
+        
+        <br>
+        <h5>Bounds</h5>
+        min Theta<input type="number" id="minTheta">
+        max Theta<input type="number" id="maxTheta">
+        min Phi<input type="number" id="minPhi">
+        max Phi<input type="number" id="maxPhi">
+        <br>
+        min X<input type="number" id="minX">
+        max X<input type="number" id="maxX">
+        min Y<input type="number" id="minY">
+        max Y<input type="number" id="maxY">
+        <br>
+        test point factor<input type="number" id="testPointFactor">
+        <br>
+        <div id="color-inputs-parent">
+
+        </div>
     </div>
-    <div id="wrapper">
-        <iframe src='tobeiframe.html' id="myframe"></iframe>
-    </div>
-    <button id="project-button">Project</button>
-    <br>
-    <input type="radio" id="radians" name="units" value="radians" id="radians" checked>
-    <label for="radians">Radians</label>
-    <input type="radio" id="degrees" name="units" value="degrees" id = "degrees">
-    <label for="degrees">Degrees</label>
-    <br>
-    X = <input type="text" id ="projection-inputX">
-    Y = <input type="text" id ="projection-inputY">
-    <br>
-    px height<input type="number" id="height" min='20' max="4000">
-    px width<input type="number" id="width" min="20" max="4000">
-    resolution<input type="range"min="0" max="2" id="resolution">
-    <br>
-    min X<input type="number" id="minX">
-    max X<input type="number" id="maxX">
-    min Y<input type="number" id="minY">
-    max Y<input type="number" id="maxY">
-    <br>
-    min Theta<input type="number" id="minTheta">
-    max Theta<input type="number" id="maxTheta">
-    min Phi<input type="number" id="minPhi">
-    max Phi<input type="number" id="maxPhi">
-    <br>
-    test point factor<input type="number" id="testPointFactor">
 </body>
 </html>
