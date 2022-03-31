@@ -16,42 +16,85 @@
         <div id="map-and-resolution-container">
             <div id="parent">
                 <canvas height="100" width="200" id="myCanvas" testattr="green"></canvas>
+            </div> 
+            <div class = 'bring-to-bottom'>
+                <label for="resolution"id="resolution-label">Resolution</label>
+                <div class = "just-get-over-with">
+                    <div id="slider-parent">
+                        <input type="range"min="0" max="2" id="resolution">
+                    </div>
+                    <div class="bring-to-bottom">
+                        <div>
+                            <label>px height</label>
+                            <input type="number" id="height" min='20' max="4000">
+                        </div>
+                        <div>    
+                            <label>px width</label>
+                            <input type="number" id="width" min="20" max="4000">
+                        </div>    
+                    </div>
+                </div>
             </div>
-            <div>
-                px height<input type="number" id="height" min='20' max="4000">
-                px width<input type="number" id="width" min="20" max="4000">
-                resolution<input type="range"min="0" max="2" id="resolution">
-            </div>
+            
+            
+                     
         </div>
         <div id="wrapper">
             <iframe src='tobeiframe.html' id="myframe"></iframe>
         </div>
+
+        <h3>Projection</h3>
         
-        <h5>Projection</h5>
-        <input type="radio" id="radians" name="units" value="radians" id="radians" checked>
-        <label for="radians">Radians</label>
-        <input type="radio" id="degrees" name="units" value="degrees" id = "degrees">
-        <label for="degrees">Degrees</label>
-        <br>
-        X = <input type="text" id ="projection-inputX">
-        Y = <input type="text" id ="projection-inputY">
+        <div>
+            <b>Units</b>
+            <br>
+            <label for="radians">Radians</label>
+            <input type="radio" id="radians" name="units" value="radians" id="radians" checked>
+            <label for="degrees">Degrees</label>
+            <input type="radio" id="degrees" name="units" value="degrees" id = "degrees">
+        </div>
+        <div>
+            <b>Projection Formulas</b>
+            <br>
+            X = <input type="text" id ="projection-inputX">
+            <br>
+            Y = <input type="text" id ="projection-inputY">
+        </div>
         <button id="project-button">Project</button>
-        <br>
         
-        <br>
-        <h5>Bounds</h5>
-        min Theta<input type="number" id="minTheta">
-        max Theta<input type="number" id="maxTheta">
-        min Phi<input type="number" id="minPhi">
-        max Phi<input type="number" id="maxPhi">
-        <br>
-        min X<input type="number" id="minX">
-        max X<input type="number" id="maxX">
-        min Y<input type="number" id="minY">
-        max Y<input type="number" id="maxY">
-        <br>
-        test point factor<input type="number" id="testPointFactor">
-        <br>
+        <h3>Latitude/Longitude Bounds</h3>
+        <div class="bounds-parent">
+            
+                <div class="m0"><label for="minTheta">min Theta</label></div>
+                <div class="m0"><input type="number" id="minTheta" name="minTheta"></div>
+                <div class="m0"><label for="maxTheta">max Theta</label></div>
+                <div class="m0"><input type="number" id="maxTheta" name="maxTheta"></div>
+            
+                <div class="m0"><label for="minPhi">min Phi</label></div>
+                <div class="m0"><input type="number" id="minPhi"></div>
+                <div class="m0"><label for="maxPhi">max Phi</label></div>
+                <div class="m0"><input type="number" id="maxPhi"></div>
+            
+        </div>
+        <h3>Optional</h3>
+        <div id="optional">
+            <div class="bounds-parent">
+                
+                    <div class="m0"><label for="minX">min X</label></div>
+                    <div class="m0"><input type="number" id="minX"></div>
+                    <div class="m0"><label for="maxX">max X</label></div>
+                    <div class="m0"><input type="number" id="maxX"></div>
+                
+                    <div class="m0"><label for="minY">min Y</label></div>
+                    <div class="m0"><input type="number" id="minY"></div>
+                    <div class="m0"><label for="maxY">max Y</label></div>
+                    <div class="m0"><input type="number" id="maxY"></div>
+                
+            </div>
+            <div>test point factor<input type="number" id="testPointFactor"></div>
+        </div>
+        
+        <h3>Colors</h3>
         <div id="color-inputs-parent">
 
         </div>
