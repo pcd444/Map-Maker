@@ -699,6 +699,7 @@ projectButton.addEventListener('click',
 
 function renderMap(){
     // Get colors
+    if(!PIXELGRID){return;}
     let colorMap = new Map();
     for(let input of colorInputs){
         colorMap.set(input.name,input.value);
