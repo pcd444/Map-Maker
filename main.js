@@ -220,7 +220,7 @@ minThetaInput.addEventListener('change',
             }
         } else {
             // add error style //1
-            this.classList.add('Nonlocal-Error');
+            this.classList.add('Local-Error');
         }
     }
 );
@@ -248,7 +248,7 @@ maxThetaInput.addEventListener('change',
             }
         } else {
             // add error style //1
-            this.classList.add('Nonlocal-Error');
+            this.classList.add('Local-Error');
         }
     }
 );
@@ -276,7 +276,7 @@ minPhiInput.addEventListener('change',
             }
         } else {
             // add error style //1
-            this.classList.add('Nonlocal-Error');
+            this.classList.add('Local-Error');
         }
     }
 );
@@ -304,7 +304,7 @@ maxPhiInput.addEventListener('change',
             }
         } else {
             // add error style //1
-            this.classList.add('Nonlocal-Error');
+            this.classList.add('Local-Error');
         }
     }
 );
