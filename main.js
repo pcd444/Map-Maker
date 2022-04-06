@@ -5,9 +5,10 @@ import { parseFloat, parseInteger, parseProjection } from "./parsers.js";
 import { autoFindXYBounds } from "./autoFindXYBounds.js";
 import { pixelDimensionsFromXYAndCount } from "./pixelDimensionsFromXYAndCount.js";
 import { allCountryCodes } from "./allCountryCodes.js";
+import myThrottle from "./myThrottle.js";
 
 // Config
-const resolutions = [25*50 ,50*100, 100*200];
+const resolutions = [25*50, 50*50, 50*100, 100*100, 100*200];
 
 // Iframe
 const IFRAME = document.getElementById('myframe');
@@ -20,8 +21,10 @@ canvasElement.style.height = '450px';
 canvasElement.style.width = '900px';
 
 // Initilize canvas
-ctx.fillStyle = "blue";
-ctx.fillRect(0, 0, 100, 100);
+// ctx.font = '18px serif';
+// ctx.fillText('This will take a while', 10, 40);
+// ctx.fillText('your browser might ask you to cancel the page.', 10, 60);
+
 
 // Geting parentElement and finding its dimensions. They should stay static
 const parentElement = document.getElementById('parent');
@@ -108,7 +111,7 @@ let colorInputsParent = document.getElementById('color-inputs-parent');
 // First deal with seabase
 
 let [seabaseInput, seabaseLabel] = createColorInputAndLabel('seabase', '#0000ff');
-seabaseInput.addEventListener('input',renderMap);
+seabaseInput.addEventListener('input', myThrottle(renderMap,1000));
 colorInputs.push(seabaseInput);
 let seabaseInputParent = document.createElement('div');
 seabaseInputParent.className = 'color-input-parent';
@@ -119,7 +122,7 @@ colorInputsParent.appendChild(seabaseInputParent);
 
 for(let countryCode of allCountryCodes){
     let [countryInput, countryLabel] = createColorInputAndLabel(countryCode, '#00ff00');
-    countryInput.addEventListener('input',renderMap);
+    countryInput.addEventListener('input', myThrottle(renderMap,1000));
     colorInputs.push(countryInput);
     let countryInputParent = document.createElement('div');
     countryInputParent.className = 'color-input-parent';
@@ -645,6 +648,7 @@ projectButton.addEventListener('click',
         }
 
         changeCanvasDimensions(pixelWidth, pixelHeight);
+        document.getElementById('loader-warning').classList.remove('display-none');
 
         let projection = makeProjectionFromParts(xProjection, yProjection);
         const temp = parseInteger(document.getElementById('testPointFactor').value);
@@ -671,6 +675,7 @@ projectButton.addEventListener('click',
         IFRAME_WINDOW.postMessage(gridPoints);
 
         function callback(e){
+            document.getElementById('loader-warning').classList.add('display-none');
             let pointQueries = e.data;
             PIXELGRID = [];
             for(let i = 0; i< pixelHeight;i++){
@@ -731,3 +736,21 @@ degrees.addEventListener('change', function(e){
     math.import({...DEGTRIG,...DEGINVERSETRIG},{override:true});
     possiblyAutoSetXYBounds();
 });
+
+
+document.getElementById("save-projection-as-png").addEventListener('click',
+    function(e){
+        if(PIXELGRID === null){
+            alert("You need to complete a projection before saving anything");
+        }
+        else{
+            let imgDataUrl = canvasElement.toDataURL('image/png');
+            var a = document.createElement('a');
+            a.href = imgDataUrl;
+            a.download = 'imgDataUrl';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    }
+)
