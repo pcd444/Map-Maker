@@ -1,13 +1,8 @@
 ## Mechanical Stuff
 ### Projection features:
-- Backwards method
-- Forward method
-- x,y bounds
-- theta, phi bounds
-- 
+- Backwards method 
 
 ### Style features:
-- Country coloring
 - deformation layer (tsodrex index or smthn)
 
 ## UI Stuff
