@@ -763,3 +763,16 @@ document.getElementById("save-projection-as-png").addEventListener('click',
         }
     }
 )
+
+let flip = true;
+document.getElementById('toggle-darkmode').addEventListener('click',
+    function(){
+        if(flip){
+            document.documentElement.setAttribute('data-theme','dark');
+        }
+        else{
+            document.documentElement.setAttribute('data-theme','light');
+        }
+        flip = flip ? false:true;
+    }
+)

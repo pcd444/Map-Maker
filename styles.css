@@ -7,12 +7,17 @@
 [data-theme="dark"] {
   --background-color: rgb(79, 61, 45);
   --input-background-color:rgb(113, 87, 74);
-  --text-color: rgb(165, 133, 106);
+  --text-color: rgb(212, 198, 186);
   --border-color:rgb(165, 133, 106);
+}
+
+button{
+  color:black;
 }
 
 *{
     box-sizing: border-box;
+    color: var(--text-color)
 }
 body{
     background-color: var(--background-color);
@@ -37,7 +42,7 @@ div{
     top: 50%;
     position: relative;
     transform:  translate(-50%,-50%);
-    background-color: antiquewhite;
+    background-color: var(--input-background-color);
 }
 
 #parent{
@@ -260,4 +265,12 @@ font-size: 13pt;
 #color-inputs-parent{
     display: grid;
     grid-template-columns: max-content max-content;
+  }
+
+  #toggle-darkmode{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 20px;
+    font-size: large;
   }
