@@ -3,12 +3,16 @@
   --input-background-color:rgb(247, 239, 235);
   --text-color: black;
   --border-color:black;
+  --local-error-color: red;
+  --nonlocal-error-color: orange;
 }
 [data-theme="dark"] {
   --background-color: rgb(79, 61, 45);
   --input-background-color:rgb(113, 87, 74);
-  --text-color: rgb(212, 198, 186);
+  --text-color: white;
   --border-color:rgb(165, 133, 106);
+  --local-error-color: rgb(255, 111, 111);
+  --nonlocal-error-color: rgb(177, 116, 2);
 }
 
 button{
@@ -93,11 +97,11 @@ div{
 }
 
 .Local-Error{
-    border: 2px solid red;
+    border: 2px solid var(--local-error-color);
 }
 
 .Nonlocal-Error{
-    background-color: orange;
+    background-color: var(--nonlocal-error-color);
 }
 
 #resolution.Active{
