@@ -113,9 +113,13 @@ let colorInputsParent = document.getElementById('color-inputs-parent');
 let [seabaseInput, seabaseLabel] = createColorInputAndLabel('seabase', '#0000ff');
 seabaseInput.addEventListener('input', myThrottle(renderMap,1000));
 colorInputs.push(seabaseInput);
+let seabaseLabelParent = document.createElement('div');
+seabaseLabelParent.className = 'color-input-parent';
+seabaseLabelParent.append(seabaseLabel);
+colorInputsParent.appendChild(seabaseLabelParent);
 let seabaseInputParent = document.createElement('div');
 seabaseInputParent.className = 'color-input-parent';
-seabaseInputParent.append(seabaseLabel, seabaseInput);
+seabaseInputParent.append(seabaseInput);
 colorInputsParent.appendChild(seabaseInputParent);
 
 
@@ -124,10 +128,15 @@ for(let countryCode of allCountryCodes){
     let [countryInput, countryLabel] = createColorInputAndLabel(countryCode, '#00ff00');
     countryInput.addEventListener('input', myThrottle(renderMap,1000));
     colorInputs.push(countryInput);
+    let countryLabelParent = document.createElement('div');
+    countryLabelParent.className = 'color-Label-parent';
+    countryLabelParent.append( countryLabel);
+    colorInputsParent.appendChild(countryLabelParent);
     let countryInputParent = document.createElement('div');
     countryInputParent.className = 'color-input-parent';
-    countryInputParent.append(countryLabel, countryInput);
+    countryInputParent.append( countryInput);
     colorInputsParent.appendChild(countryInputParent);
+    
 }
 
 function createColorInputAndLabel(name, color){

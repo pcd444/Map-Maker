@@ -1,12 +1,25 @@
+:root{
+  --background-color: rgb(247, 231, 217);
+  --input-background-color:rgb(247, 239, 235);
+  --text-color: black;
+  --border-color:black;
+}
+[data-theme="dark"] {
+  --background-color: rgb(79, 61, 45);
+  --input-background-color:rgb(113, 87, 74);
+  --text-color: rgb(165, 133, 106);
+  --border-color:rgb(165, 133, 106);
+}
+
 *{
     box-sizing: border-box;
 }
 body{
-    background-color: rgb(247, 231, 217);
+    background-color: var(--background-color);
 }
 
 input{
-    background-color: rgb(247, 239, 235);;
+    background-color: var(--input-background-color);
 }
 
 div{
@@ -31,7 +44,6 @@ div{
     border: 5px solid black;
     height: 450px;
     width: 900px;
-    background-color: rgb(247, 243, 241);
     margin:0;
     box-sizing: content-box;
     position: relative;
@@ -243,5 +255,9 @@ font-size: 13pt;
     100% {
       transform: rotate(360deg);
     }
-  }
+}
   
+#color-inputs-parent{
+    display: grid;
+    grid-template-columns: max-content max-content;
+  }
