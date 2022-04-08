@@ -22,7 +22,7 @@ function parseProjection(string){
             const parsedExpression =  expressionTree.compile();
             return(
                 function(theta, phi){
-                    return parsedExpression.evaluate({theta,phi});
+                    return parsedExpression.evaluate({theta,phi,longitude:theta,lattitude:phi,θ:theta,φ:phi});
                 }
             );
         }
@@ -69,7 +69,7 @@ function checkVariables(expressionNode){
 
         case 'SymbolNode':
             const name = expressionNode.name;
-            if(name === 'theta' || name === 'phi' /*|| name === 'θ' || name === 'φ' || name === 'lattitude' || name === 'longitude'*/ || name ==='pi'){
+            if(name === 'theta' || name === 'phi' || name === 'θ' || name === 'φ' || name === 'lattitude' || name === 'longitude' || name ==='pi'){
                 return true;
             }
             else{
