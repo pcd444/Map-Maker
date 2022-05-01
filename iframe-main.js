@@ -10,7 +10,7 @@ window.addEventListener("message",function(e){
         let x = thetaToX(longitude);
         let y = phiToY(latitude);
         let element = document.elementFromPoint(x, y);
-        if(element === svg || element === mapBorder || element === null ||element === this.document.documentElement){
+        if(element === svg || element === mapBorder || element === null ||element === undefined||element === this.document.documentElement){
             throw new Error(`The search somehow went out of bounds: the element found was ${element}`);
         }
         output.push([...element.classList]);
@@ -31,13 +31,24 @@ function xToTheta(x){
 }
 
 function thetaToX(theta){
+    let x;
     if(theta < -180 || theta > 180){
         throw new RangeError(`The input theta: ${theta} is outside of the range of -180 to 180`)
     }
     if(theta > -169.855708194561){
-        return(3.0557450084715274 * theta + 519.0357324759261);
+        x = (3.0557450084715274 * theta + 519.0357324759261);
     }else{
-        return(3.0557450084715274 * theta + 1619.034101524875);
+        x = (3.0557450084715274 * theta + 1619.034101524875);
+    }
+
+    if(x >=1100){
+        return 1099;
+    }
+    else if(x < 1){
+        return 1;
+    }
+    else{
+        return x;
     }
 }
 
@@ -52,5 +63,14 @@ function phiToY(phi){
     if(phi < -90 || phi > 90){
         throw new RangeError(`The input phi: ${phi} is outside of the range of -90 to 90`)
     }
-    return(phi * -3.056936237608173 + 274.9718869137237)
+    let y = (phi * -3.056936237608173 + 274.9718869137237);
+    if(y >= 550){    
+        return 549;
+    }
+    else if(y < 1){
+        return 1;
+    }
+    else{
+        return y;
+    }
 }
