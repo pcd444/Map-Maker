@@ -10,6 +10,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="help-overlay" class="display-none">
+        <div id="help">
+            <div id="help-x-out">X</div>
+            <h5>What is this?</h5>
+            <p>This is a tool to create basic map projections.</p>
+            <h5>What is a map projection?</h5>
+            <p>
+                A map projection is a 2D representation of the surface of the earth.
+                To read more about map projections check out
+                <a target="_blank" href="https://en.wikipedia.org/wiki/Map_projection">this wikipedia page</a>.
+            </p>
+            <h5>How do I make a projection?</h5>
+            <p>
+                To make a projection copy the formula for the projection into the X and Y inputs in the projection
+                section. You can find the formula for a projection likely on the wikipedia page for the projection.
+                For example the <a href="https://en.wikipedia.org/wiki/Sinusoidal_projection" target="_blank">sinusoidal projection</a>.
+                Unfortunately there is an inconsistency with what variables are named in projection formulas. 
+                Some use theta(φ) for longitude while others use lambda(λ). Write theta when you input the projection.
+            </p>
+            <p>
+                Once you have input the projection formulas the final mandatory step is choosing longitude/latitude bounds. 
+                These bounds determine what parts of the world will be included in your projection. For example if you
+                wanted to show the entire northern hemisphere you would set min Longitude  = -180 , max Longitude  = 180, 
+                min Latitude  =  0, and max Latitude  =  90.
+            </p>
+            <h5>How does this work</h5>
+            <p>
+                Check out the <a href="https://github.com/pcd444/Map-Maker" target="_blank">github repository</a> for the code and a description of the methods used. 
+            </p>
+        </div>
+    </div>
     <div id="top">
         <h1>Projection Maker v1: By Peter Duffy</h1>
         <button id="toggle-darkmode">dark/light mode toggle</button>
@@ -48,8 +79,10 @@
         <div id="wrapper">
             <iframe src='tobeiframe.html' id="myframe"></iframe>
         </div>
-        <div><button id="project-button">Project</button></div>
-        <div><button id="save-projection-as-png">Save as PNG</button></div>
+        <button id="project-button">Project</button>
+        <button id="save-projection-as-png" >Save as PNG</button>
+        <button id="help-button">?</button>
+
 
         <div class="flexb m0">
             <fieldset class="input-section">

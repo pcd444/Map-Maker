@@ -5,6 +5,8 @@
   --border-color:black;
   --local-error-color: red;
   --nonlocal-error-color: orange;
+  --link-color: blue;
+  --link-color-visited: purple;
 }
 [data-theme="dark"] {
   --background-color: rgb(79, 61, 45);
@@ -13,10 +15,13 @@
   --border-color:rgb(165, 133, 106);
   --local-error-color: rgb(255, 111, 111);
   --nonlocal-error-color: rgb(177, 116, 2);
+  --link-color: rgb(106, 106, 244);
+  --link-color-visited: rgb(220, 174, 220);
 }
 
 button{
   color:black;
+  cursor: pointer;
 }
 
 *{
@@ -160,6 +165,19 @@ height: 30px;
 width:  75px;
 font-size: 13pt;
 }
+
+#save-projection-as-png{
+  height: 30px; 
+  font-size: 13pt;
+}
+
+#help-button{
+  background-color: plum;
+  border-radius: 100%;
+  border-style: solid;
+  border-color:black;
+}
+
 #canvas-tip{
     display: none;
 }
@@ -175,7 +193,8 @@ font-size: 13pt;
     text-align: center;
 }
 .display-none{
-    display: none;
+  display: none !important;
+
 }
 
 .lds-roller {
@@ -278,3 +297,44 @@ font-size: 13pt;
     margin: 20px;
     font-size: large;
   }
+
+#help-overlay{
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:0;
+  background-color: rgba(0,0,0,.35);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#help{
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color:var(--border-color);
+  max-width: 700px;
+  border-radius: 2%;
+  position: relative;
+  padding: 20px;
+}
+
+a{
+  color: var(--link-color);
+}
+a:visited{
+  color: var(--link-color-visited);
+}
+p{
+  text-indent: 1rem;
+}
+#help-x-out{
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: large;
+  cursor:pointer;
+}

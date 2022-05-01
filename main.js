@@ -718,7 +718,7 @@ function renderMap(){
     for(let input of colorInputs){
         colorMap.set(input.name,input.value);
     }
-    // Map Query data is allready in PIXELGRID
+    // Map Query data is all ready in PIXELGRID
     // Loop Over PIXELGRID, coloring every pixel using data in colorMap
     for(let [rowNum, row] of PIXELGRID.entries()){
         for(let [colNum, value] of row.entries()){
@@ -774,5 +774,35 @@ document.getElementById('toggle-darkmode').addEventListener('click',
             document.documentElement.setAttribute('data-theme','light');
         }
         flip = flip ? false:true;
+    }
+)
+
+// Click through guide
+document.getElementById("help-button").addEventListener('click',
+    function(){
+        // Show help modal.
+        document.getElementById('help-overlay').classList.toggle('display-none');
+    }
+);
+
+document.getElementById("help-x-out").addEventListener('click',
+    function(){
+        // Show help modal.
+        document.getElementById('help-overlay').classList.toggle('display-none');
+    }
+);
+
+document.getElementById('help-overlay').addEventListener(
+    'click',
+    function(){
+        // Show help modal.
+        document.getElementById('help-overlay').classList.toggle('display-none');
+    }
+);
+
+document.getElementById('help').addEventListener(
+    'click',
+    function(e){
+        e.stopPropagation();
     }
 )
